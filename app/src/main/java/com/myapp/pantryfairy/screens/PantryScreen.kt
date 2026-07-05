@@ -11,14 +11,7 @@ import com.myapp.pantryfairy.model.PantryItem
 @Composable
 fun PantryScreen() {
 
-    val pantry = remember {
-        mutableStateListOf(
-            PantryItem("eggs", true, 6.0),
-            PantryItem("milk", true),
-            PantryItem("flour", false)
-        )
-    }
-
+    val pantry = remember { mutableStateListOf<PantryItem>() }
     var showDialog by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp)) {
