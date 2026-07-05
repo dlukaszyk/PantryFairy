@@ -21,16 +21,17 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = AppScreen.Home.route,
             modifier = Modifier.padding(padding)
         ) {
 
-            composable("home") { HomeScreen() }
-            composable("cook") { CookNowScreen() }
-            composable("recipes") { RecipesScreen() }
-            composable("pantry") { PantryScreen() }
-            composable("mealplan") { MealPlanScreen() }
-            composable("shopping") { ShoppingListScreen() }
-            composable("settings") { SettingsScreen() }        }
+            composable(AppScreen.Home.route) { HomeScreen() }
+            composable(AppScreen.CookNow.route) { CookNowScreen() }
+            composable(AppScreen.Recipes.route) { RecipesScreen() }
+            composable(AppScreen.Pantry.route) { PantryScreen() }
+            composable(AppScreen.MealPlan.route) { MealPlanScreen() }
+            composable(AppScreen.Shopping.route) { ShoppingListScreen() }
+            composable(AppScreen.Settings.route) { SettingsScreen() }
+        }
     }
 }
