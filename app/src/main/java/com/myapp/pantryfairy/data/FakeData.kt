@@ -1,4 +1,4 @@
-package com.myapp.pantryfairy.database
+package com.myapp.pantryfairy.data
 
 import com.myapp.pantryfairy.model.MealType
 import com.myapp.pantryfairy.model.Recipe

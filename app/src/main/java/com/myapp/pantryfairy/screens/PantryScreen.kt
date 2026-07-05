@@ -5,11 +5,37 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.Room
+import com.myapp.pantryfairy.data.database.AppDatabase
+import com.myapp.pantryfairy.data.repository.PantryRepository
 import com.myapp.pantryfairy.model.PantryItem
+import com.myapp.pantryfairy.ui.viewmodel.PantryViewModel
+import com.myapp.pantryfairy.ui.viewmodel.PantryViewModelFactory
 
 @Composable
 fun PantryScreen() {
+    val context = LocalContext.current
+
+    val db = remember {
+        Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "pantry_db"
+        ).build()
+    }
+
+    val repository = remember {
+        PantryRepository(db.pantryDao())
+    }
+
+    val viewModel: PantryViewModel = viewModel(
+        factory = PantryViewModelFactory(repository)
+    )
+
+    val items by viewModel.pantryItems.collectAsState()
 
     val pantry = remember { mutableStateListOf<PantryItem>() }
     var showDialog by remember { mutableStateOf(false) }

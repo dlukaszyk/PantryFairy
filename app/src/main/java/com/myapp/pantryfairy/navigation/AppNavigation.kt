@@ -10,7 +10,7 @@ import androidx.navigation.compose.*
 import com.myapp.pantryfairy.screens.*
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.myapp.pantryfairy.model.PantryItem
-import com.myapp.pantryfairy.database.recipes
+import com.myapp.pantryfairy.data.recipes
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
