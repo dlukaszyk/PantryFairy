@@ -12,26 +12,26 @@ import com.myapp.pantryfairy.model.matchRecipes
 
 @Composable
 fun CookNowScreen(
-    recipes: List<Recipe>,
-    pantry: List<PantryItem>
+//    recipes: List<Recipe>,
+//    pantry: List<PantryItem>
 ) {
-    val matches = matchRecipes(recipes, pantry)
-
-    Column(modifier = Modifier.padding(16.dp)) {
-
-        Text("Cook Now")
-        Spacer(Modifier.height(16.dp))
-        matches.forEach {
-            Text(it.recipe.name)
-            if (it.canCook) {
-                Text("✔ You can cook this")
-            } else {
-                Text("Missing:")
-                it.missing.forEach { item ->
-                    Text("• $item")
-                }
-            }
-            Spacer(Modifier.height(12.dp))
-        }
-    }
+//    val matches = matchRecipes(recipes, pantry)
+//
+//    Column(modifier = Modifier.padding(16.dp)) {
+//
+//        Text("Cook Now")
+//        Spacer(Modifier.height(16.dp))
+//        matches.forEach {
+//            Text(it.recipe.name)
+//            if (it.canCook) {
+//                Text("✔ You can cook this")
+//            } else {
+//                Text("Missing:")
+//                it.missing.forEach { item ->
+//                    Text("• $item")
+//                }
+//            }
+//            Spacer(Modifier.height(12.dp))
+//        }
+//    }
 }

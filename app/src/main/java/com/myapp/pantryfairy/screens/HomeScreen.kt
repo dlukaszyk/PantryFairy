@@ -14,24 +14,24 @@ import com.myapp.pantryfairy.model.matchRecipes
 
 @Composable
 fun HomeScreen(
-    recipes: List<Recipe>,
-    pantry: List<PantryItem>
+//    recipes: List<Recipe>,
+//    pantry: List<PantryItem>
 ) {
-    val matches = matchRecipes(recipes, pantry)
-    val canCook = matches.filter { it.canCook }
-
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-    ) {
-        Text("Home")
-        Spacer(Modifier.height(16.dp))
-
-        Text("You can cook now:")
-        canCook.forEach {
-            Text("✔ ${it.recipe.name}")
-        }
-    }
+//    val matches = matchRecipes(recipes, pantry)
+//    val canCook = matches.filter { it.canCook }
+//
+//    Column(
+//        modifier = Modifier
+//            .padding(16.dp)
+//            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
+//    ) {
+//        Text("Home")
+//        Spacer(Modifier.height(16.dp))
+//
+//        Text("You can cook now:")
+//        canCook.forEach {
+//            Text("✔ ${it.recipe.name}")
+//        }
+//    }
 }

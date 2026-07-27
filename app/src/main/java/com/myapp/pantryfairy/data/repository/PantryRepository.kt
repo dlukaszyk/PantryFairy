@@ -1,23 +1,30 @@
 package com.myapp.pantryfairy.data.repository
 
-import com.myapp.pantryfairy.data.dao.PantryDao
+import com.myapp.pantryfairy.data.dao.PantryItemDao
 import com.myapp.pantryfairy.data.entity.PantryItemEntity
+import kotlinx.coroutines.flow.Flow
 
 class PantryRepository(
-    private val dao: PantryDao
+    private val dao: PantryItemDao
 ) {
 
-    val pantryItems = dao.getAll()
-
-    suspend fun addItem(name: String) {
-        dao.insert(PantryItemEntity(name = name))
+    suspend fun countItems(): Int {
+        return dao.countItems()
     }
 
-    suspend fun toggleItem(item: PantryItemEntity) {
-        dao.update(item.copy(has = !item.has))
+    fun getAllItems(): Flow<List<PantryItemEntity>> {
+        return dao.getAllItems()
     }
 
-    suspend fun deleteItem(item: PantryItemEntity) {
+    suspend fun insert(item: PantryItemEntity) {
+        dao.insert(item)
+    }
+
+    suspend fun update(item: PantryItemEntity) {
+        dao.update(item)
+    }
+
+    suspend fun delete(item: PantryItemEntity) {
         dao.delete(item)
     }
 }
