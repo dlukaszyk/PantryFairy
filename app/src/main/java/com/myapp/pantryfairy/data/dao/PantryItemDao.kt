@@ -18,6 +18,9 @@ interface PantryItemDao {
     @Query("SELECT * FROM pantry ORDER BY name")
     fun getAllItems(): Flow<List<PantryItemEntity>>
 
+    @Query("SELECT * FROM pantry")
+    suspend fun getItemsOnce(): List<PantryItemEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: PantryItemEntity)
 

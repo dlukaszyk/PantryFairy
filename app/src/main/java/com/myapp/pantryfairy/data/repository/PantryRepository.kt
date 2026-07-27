@@ -16,6 +16,10 @@ class PantryRepository(
         return dao.getAllItems()
     }
 
+    suspend fun getItemsOnce(): List<PantryItemEntity> {
+        return dao.getItemsOnce()
+    }
+
     suspend fun insert(item: PantryItemEntity) {
         dao.insert(item)
     }

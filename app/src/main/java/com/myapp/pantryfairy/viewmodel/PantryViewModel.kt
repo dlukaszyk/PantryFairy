@@ -40,38 +40,4 @@ class PantryViewModel(
         }
     }
 
-
-    //test data - do usunięcia po dodaniu prawdziwych danych
-    fun addTestDataIfNeeded() {
-        viewModelScope.launch {
-
-            if (repository.countItems() == 0) {
-
-                repository.insert(
-                    PantryItemEntity(
-                        name = "Eggs",
-                        has = true,
-                        quantity = 6.0
-                    )
-                )
-
-                repository.insert(
-                    PantryItemEntity(
-                        name = "Milk",
-                        has = true,
-                        quantity = 1.0
-                    )
-                )
-
-                repository.insert(
-                    PantryItemEntity(
-                        name = "Flour",
-                        has = false
-                    )
-                )
-            }
-
-        }
-
-    }
 }

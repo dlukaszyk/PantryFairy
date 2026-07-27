@@ -3,18 +3,33 @@ package com.myapp.pantryfairy.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
 import com.myapp.pantryfairy.data.repository.PantryRepository
+import com.myapp.pantryfairy.data.repository.RecipeRepository
+import com.myapp.pantryfairy.data.seed.DatabaseSeeder
 import com.myapp.pantryfairy.screens.*
 
 @Composable
 fun AppNavigation(
     modifier: Modifier = Modifier,
-    pantryRepository: PantryRepository
+    pantryRepository: PantryRepository,
+    recipeRepository: RecipeRepository
 ) {
 
     val navController = rememberNavController()
+    val seeder = remember {
+        DatabaseSeeder(
+            pantryRepository,
+            recipeRepository
+        )
+    }
+    LaunchedEffect(Unit) {
+        seeder.seedPantryIfEmpty()
+        seeder.seedRecipesIfEmpty()
+    }
 
     Scaffold(
         bottomBar = {
@@ -37,7 +52,9 @@ fun AppNavigation(
             }
 
             composable(AppScreen.Recipes.route) {
-                RecipesScreen()
+                RecipesScreen(
+                    repository = recipeRepository
+                )
             }
 
             composable(AppScreen.Pantry.route) {

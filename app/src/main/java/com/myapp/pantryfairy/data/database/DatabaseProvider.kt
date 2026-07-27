@@ -6,18 +6,20 @@ import androidx.room.Room
 object DatabaseProvider {
 
     @Volatile
-    private var INSTANCE: PantryDatabase? = null
+    private var INSTANCE: AppDatabase? = null
 
 
-    fun getDatabase(context: Context): PantryDatabase {
+    fun getDatabase(context: Context): AppDatabase {
 
         return INSTANCE ?: synchronized(this) {
 
             val instance = Room.databaseBuilder(
                 context.applicationContext,
-                PantryDatabase::class.java,
+                AppDatabase::class.java,
                 "pantryfairy_database"
-            ).build()
+            )
+                .fallbackToDestructiveMigration() //todo poprawić żeby nie znikały dane jak będą już prawdziwe
+                .build()
 
             INSTANCE = instance
             instance

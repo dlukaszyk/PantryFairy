@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import com.myapp.pantryfairy.data.database.DatabaseProvider
 import com.myapp.pantryfairy.data.repository.PantryRepository
+import com.myapp.pantryfairy.data.repository.RecipeRepository
 import com.myapp.pantryfairy.navigation.AppNavigation
 
 class MainActivity : ComponentActivity() {
@@ -13,16 +14,22 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val database = DatabaseProvider.getDatabase(applicationContext)
+        val database = DatabaseProvider.getDatabase(this)
 
-        val repository = PantryRepository(
+        val pantryRepository = PantryRepository(
             database.pantryDao()
+        )
+
+        val recipeRepository = RecipeRepository(
+            database.recipeDao(),
+            database.recipeIngredientDao()
         )
 
         setContent {
             MaterialTheme {
                 AppNavigation(
-                    pantryRepository = repository
+                    pantryRepository = pantryRepository,
+                    recipeRepository = recipeRepository
                 )
             }
         }
