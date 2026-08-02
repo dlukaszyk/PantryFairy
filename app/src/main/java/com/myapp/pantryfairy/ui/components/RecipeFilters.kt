@@ -20,6 +20,8 @@ import androidx.compose.material.icons.filled.FilterAltOff
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
+import com.myapp.pantryfairy.R
 
 
 @Composable
@@ -63,7 +65,7 @@ fun RecipeFilters(
             ) {
 
                 Text(
-                    text = "Filters",
+                    text = stringResource(R.string.filters),
                     style = MaterialTheme.typography.titleMedium
                 )
 
@@ -74,7 +76,7 @@ fun RecipeFilters(
 
                     Icon(
                         imageVector = Icons.Default.FilterAltOff,
-                        contentDescription = "Clear filters"
+                        contentDescription = stringResource(R.string.clear_filters)
                     )
 
                 }
@@ -85,7 +87,7 @@ fun RecipeFilters(
                 modifier = Modifier.height(12.dp)
             )
 
-            Text("Meal type")
+            Text(stringResource(R.string.meal_type))
 
             Row {
 
@@ -108,7 +110,7 @@ fun RecipeFilters(
 
             }
 
-            Text("Category")
+            Text(stringResource(R.string.category))
 
             Row {
 

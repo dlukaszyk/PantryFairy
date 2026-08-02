@@ -7,7 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.myapp.pantryfairy.R
 import com.myapp.pantryfairy.model.PantryItem
 import com.myapp.pantryfairy.model.Recipe
 import com.myapp.pantryfairy.model.matchRecipes
@@ -26,10 +28,10 @@ fun HomeScreen(
 //            .fillMaxSize()
 //            .verticalScroll(rememberScrollState())
 //    ) {
-//        Text("Home")
+//        Text(stringResource(R.string.home))
 //        Spacer(Modifier.height(16.dp))
 //
-//        Text("You can cook now:")
+//        Text(stringResource(R.string.can_cook_now))
 //        canCook.forEach {
 //            Text("✔ ${it.recipe.name}")
 //        }

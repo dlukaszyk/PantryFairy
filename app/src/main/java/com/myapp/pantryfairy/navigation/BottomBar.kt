@@ -4,8 +4,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.myapp.pantryfairy.R
 
 @Composable
 fun BottomBar(navController: NavController) {
@@ -24,7 +26,7 @@ fun BottomBar(navController: NavController) {
                 }
             },
             icon = { Icon(Icons.Default.Home, null) },
-            label = { Text("Home") }
+            label = { Text(stringResource(R.string.home)) }
         )
 
         NavigationBarItem(
@@ -33,7 +35,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.CookNow.route)
             },
             icon = { Icon(Icons.Default.RestaurantMenu, null) },
-            label = { Text("Cook") }
+            label = { Text(stringResource(R.string.cook)) }
         )
 
         NavigationBarItem(
@@ -42,7 +44,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.Recipes.route)
             },
             icon = { Icon(Icons.Default.MenuBook, null) },
-            label = { Text("Recipes") }
+            label = { Text(stringResource(R.string.recipes)) }
         )
 
         NavigationBarItem(
@@ -51,7 +53,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.Pantry.route)
             },
             icon = { Icon(Icons.Default.Kitchen, null) },
-            label = { Text("Pantry") }
+            label = { Text(stringResource(R.string.pantry)) }
         )
 
         NavigationBarItem(
@@ -60,7 +62,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.MealPlan.route)
             },
             icon = { Icon(Icons.Default.CalendarMonth, null) },
-            label = { Text("Plan") }
+            label = { Text(stringResource(R.string.plan)) }
         )
 
         NavigationBarItem(
@@ -69,7 +71,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.Shopping.route)
             },
             icon = { Icon(Icons.Default.ShoppingCart, null) },
-            label = { Text("Shop") }
+            label = { Text(stringResource(R.string.shop)) }
         )
 
         NavigationBarItem(
@@ -78,7 +80,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(AppScreen.Settings.route)
             },
             icon = { Icon(Icons.Default.Settings, null) },
-            label = { Text("Settings") }
+            label = { Text(stringResource(R.string.settings)) }
         )
     }
 }

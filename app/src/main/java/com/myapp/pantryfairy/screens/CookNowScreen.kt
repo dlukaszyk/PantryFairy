@@ -5,7 +5,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.myapp.pantryfairy.R
 import com.myapp.pantryfairy.model.PantryItem
 import com.myapp.pantryfairy.model.Recipe
 import com.myapp.pantryfairy.model.matchRecipes
@@ -19,14 +21,14 @@ fun CookNowScreen(
 //
 //    Column(modifier = Modifier.padding(16.dp)) {
 //
-//        Text("Cook Now")
+//        Text(stringResource(R.string.cook_now))
 //        Spacer(Modifier.height(16.dp))
 //        matches.forEach {
 //            Text(it.recipe.name)
 //            if (it.canCook) {
-//                Text("✔ You can cook this")
+//                Text(stringResource(R.string.can_cook))
 //            } else {
-//                Text("Missing:")
+//                Text(stringResource(R.string.missing))
 //                it.missing.forEach { item ->
 //                    Text("• $item")
 //                }

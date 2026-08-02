@@ -4,6 +4,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.myapp.pantryfairy.R
 import com.myapp.pantryfairy.data.entity.PantryItemEntity
 
 
@@ -30,7 +32,7 @@ fun EditItemDialog(
         onDismissRequest = onDismiss,
 
         title = {
-            Text("Edit item")
+            Text(stringResource(R.string.edit_item))
         },
 
         text = {
@@ -45,7 +47,7 @@ fun EditItemDialog(
                         name = it
                     },
                     label = {
-                        Text("Name")
+                        Text(stringResource(R.string.name))
                     }
                 )
 
@@ -56,7 +58,7 @@ fun EditItemDialog(
                         quantity = it
                     },
                     label = {
-                        Text("Quantity")
+                        Text(stringResource(R.string.quantity))
                     }
                 )
             }
@@ -76,7 +78,7 @@ fun EditItemDialog(
                     )
                 }
             ) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
         },
 
@@ -86,7 +88,7 @@ fun EditItemDialog(
             Button(
                 onClick = onDismiss
             ) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

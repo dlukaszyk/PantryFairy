@@ -12,7 +12,9 @@ import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TextButton
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.myapp.pantryfairy.R
 
 @Composable
 fun FilterButton(
@@ -28,7 +30,7 @@ fun FilterButton(
         ) {
             Icon(
                 imageVector = Icons.Default.FilterList,
-                contentDescription = "Filters"
+                contentDescription = stringResource(R.string.filters)
             )
 
             Spacer(
@@ -37,9 +39,9 @@ fun FilterButton(
 
             Text(
                 text = if (filters.isEmpty()) {
-                    "Filters"
+                    stringResource(R.string.filters)
                 } else {
-                    "Filters (${filters.size})"
+                    "${stringResource(R.string.filters)} (${filters.size})"
                 }
             )
         }
@@ -50,11 +52,11 @@ fun FilterButton(
                 onClick = onClear
             ) {
                 Text(
-                    text = "Clear filters"
+                    text = stringResource(R.string.clear_filters)
                 )
                 Icon(
                     imageVector = Icons.Default.FilterAltOff,
-                    contentDescription = "Clear filters"
+                    contentDescription = stringResource(R.string.clear_filters)
                 )
 
 

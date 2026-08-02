@@ -22,6 +22,8 @@ import com.myapp.pantryfairy.ui.components.FilterButton
 import com.myapp.pantryfairy.ui.components.RecipeFilters
 import androidx.compose.animation.AnimatedVisibility
 import androidx.navigation.NavController
+import androidx.compose.ui.res.stringResource
+import com.myapp.pantryfairy.R
 import com.myapp.pantryfairy.model.RecipeWithIngredients
 
 @Composable
@@ -74,7 +76,7 @@ fun RecipesScreen(
     ) {
 
         Text(
-            text = "Recipes"
+            text = stringResource(R.string.recipes)
         )
         Spacer(
             modifier = Modifier.height(16.dp)
@@ -86,7 +88,7 @@ fun RecipesScreen(
                 searchQuery = it
             },
             label = {
-                Text("Search recipes")
+                Text(stringResource(R.string.search_recipes))
             },
             modifier = Modifier.fillMaxWidth()
         )

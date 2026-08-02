@@ -17,6 +17,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.res.stringResource
+import com.myapp.pantryfairy.R
 
 @Composable
 fun PantryScreen(
@@ -51,14 +53,14 @@ fun PantryScreen(
             .fillMaxSize()
     ) {
 
-        Text("Pantry")
+        Text(stringResource(R.string.pantry))
 
         Spacer(Modifier.height(16.dp))
         LazyColumn(
             modifier = Modifier.weight(1f)
         ) {
             item {
-                Text("Available")
+                Text(stringResource(R.string.available))
             }
             items(availableItems) { item ->
                 Row(
@@ -106,7 +108,7 @@ fun PantryScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete item"
+                            contentDescription = stringResource(R.string.delete_item)
                         )
                     }
                 }
@@ -117,7 +119,7 @@ fun PantryScreen(
                 Spacer(
                     Modifier.height(16.dp)
                 )
-                Text("Missing")
+                Text(stringResource(R.string.missing_title))
             }
             items(missingItems) { item ->
                 Row(
@@ -154,7 +156,7 @@ fun PantryScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete item"
+                            contentDescription = stringResource(R.string.delete_item)
                         )
                     }
                 }
@@ -182,7 +184,7 @@ fun PantryScreen(
                     selectedItems.clear()
                 }
             ) {
-                Text("Add to pantry")
+                Text(stringResource(R.string.add_to_pantry))
             }
         }
 
@@ -203,14 +205,14 @@ fun PantryScreen(
                     selectedItems.clear()
                 }
             ) {
-                Text("Remove from pantry")
+                Text(stringResource(R.string.remove_from_pantry))
             }
         }
 
         Button(
             onClick = { showDialog = true }
         ) {
-            Text("+ Add item")
+            Text(stringResource(R.string.add_item))
         }
     }
     if (showDialog) {
@@ -261,7 +263,7 @@ fun AddItemDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add ingredient") },
+        title = { Text(stringResource(R.string.add_ingredient)) },
         text = {
 
             Column(
@@ -271,13 +273,13 @@ fun AddItemDialog(
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
-                    placeholder = { Text("e.g. eggs") }
+                    placeholder = { Text(stringResource(R.string.placeholder_eggs)) }
                 )
 
                 OutlinedTextField(
                     value = quantityText,
                     onValueChange = { quantityText = it },
-                    placeholder = { Text("Quantity") }
+                    placeholder = { Text(stringResource(R.string.quantity)) }
                 )
             }
         },
@@ -288,12 +290,12 @@ fun AddItemDialog(
                     quantityText.toDoubleOrNull()
                 )
             }) {
-                Text("Add")
+                Text(stringResource(R.string.add))
             }
         },
         dismissButton = {
             Button(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

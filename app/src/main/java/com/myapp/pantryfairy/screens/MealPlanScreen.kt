@@ -5,6 +5,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.myapp.pantryfairy.R
 
 @Composable
 fun MealPlanScreen() {
@@ -14,6 +16,6 @@ fun MealPlanScreen() {
         contentAlignment = Alignment.Center
     ) {
 
-        Text("Meal Plan")
+        Text(stringResource(R.string.meal_plan))
     }
 }
