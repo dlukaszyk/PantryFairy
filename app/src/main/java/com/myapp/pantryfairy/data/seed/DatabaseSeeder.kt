@@ -50,6 +50,15 @@ class DatabaseSeeder(
                 fat = 12,
                 carbs = 60
             )
+            val scrambledEggs = RecipeEntity(
+                name = "Scrambled Eggs",
+                mealType = "Dinner",
+                category = "Savory",
+                calories = 450,
+                protein = 23,
+                fat = 12,
+                carbs = 12
+            )
 
             recipeRepository.insertRecipeWithIngredients(
                 pancakes,
@@ -71,6 +80,17 @@ class DatabaseSeeder(
                         name = "flour",
                         quantity = 150.0,
                         unit = "g"
+                    )
+                )
+            )
+            recipeRepository.insertRecipeWithIngredients(
+                scrambledEggs,
+                listOf(
+                    RecipeIngredientEntity(
+                        recipeId = 0,
+                        name = "eggs",
+                        quantity = 5.0,
+                        unit = "pcs"
                     )
                 )
             )

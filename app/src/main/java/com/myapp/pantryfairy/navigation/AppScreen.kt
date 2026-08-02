@@ -7,7 +7,7 @@ sealed class AppScreen(val route: String) {
     object CookNow : AppScreen("cook_now")
 
     object Recipes : AppScreen("recipes")
-
+    object RecipeDetails : AppScreen("recipe_details/{recipeId}")
     object Pantry : AppScreen("pantry")
 
     object MealPlan : AppScreen("meal_plan")

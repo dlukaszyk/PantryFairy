@@ -53,8 +53,29 @@ fun AppNavigation(
 
             composable(AppScreen.Recipes.route) {
                 RecipesScreen(
-                    repository = recipeRepository
+                    repository = recipeRepository,
+                    navController = navController
                 )
+            }
+
+            composable(
+                route = AppScreen.RecipeDetails.route
+            ) {
+
+                val recipeId = it.arguments
+                    ?.getString("recipeId")
+                    ?.toLongOrNull()
+
+
+                if (recipeId != null) {
+
+                    RecipeDetailsScreen(
+                        recipeId = recipeId,
+                        repository = recipeRepository
+                    )
+
+                }
+
             }
 
             composable(AppScreen.Pantry.route) {

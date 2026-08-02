@@ -16,7 +16,7 @@ class RecipeViewModel(
 ) : ViewModel() {
 
 
-    val recipes = repository.getAllRecipes()
+    val recipes = repository.getRecipesWithIngredients()
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),

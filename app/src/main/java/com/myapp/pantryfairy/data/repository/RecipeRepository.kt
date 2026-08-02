@@ -4,6 +4,7 @@ import com.myapp.pantryfairy.data.dao.RecipeDao
 import com.myapp.pantryfairy.data.dao.RecipeIngredientDao
 import com.myapp.pantryfairy.data.entity.RecipeEntity
 import com.myapp.pantryfairy.data.entity.RecipeIngredientEntity
+import com.myapp.pantryfairy.model.RecipeWithIngredients
 import kotlinx.coroutines.flow.Flow
 
 class RecipeRepository(
@@ -46,5 +47,17 @@ class RecipeRepository(
     ): Flow<List<RecipeIngredientEntity>> {
 
         return ingredientDao.getIngredientsForRecipe(recipeId)
+    }
+
+    fun getRecipesWithIngredients():
+            Flow<List<RecipeWithIngredients>> {
+
+        return recipeDao.getRecipesWithIngredients()
+    }
+
+    suspend fun getRecipeWithIngredients(recipeId: Long):
+            RecipeWithIngredients {
+
+        return recipeDao.getRecipeWithIngredients(recipeId)
     }
 }
