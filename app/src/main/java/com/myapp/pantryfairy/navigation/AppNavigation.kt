@@ -71,7 +71,9 @@ fun AppNavigation(
 
                     RecipeDetailsScreen(
                         recipeId = recipeId,
-                        repository = recipeRepository
+                        repository = recipeRepository,
+                        pantryRepository = pantryRepository,
+                        navController = navController
                     )
 
                 }

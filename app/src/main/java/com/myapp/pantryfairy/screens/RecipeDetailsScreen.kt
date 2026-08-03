@@ -11,12 +11,25 @@ import com.myapp.pantryfairy.R
 import com.myapp.pantryfairy.data.repository.RecipeRepository
 import com.myapp.pantryfairy.viewmodel.RecipeDetailsViewModel
 import com.myapp.pantryfairy.viewmodel.RecipeDetailsViewModelFactory
-
+import androidx.navigation.NavController
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import com.myapp.pantryfairy.data.repository.PantryRepository
+import com.myapp.pantryfairy.ui.components.CookStatusCard
+import com.myapp.pantryfairy.ui.components.IngredientStatusRow
+import com.myapp.pantryfairy.ui.components.NutritionCard
+import com.myapp.pantryfairy.ui.components.RecipeInstructions
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 @Composable
 fun RecipeDetailsScreen(
     recipeId: Long,
-    repository: RecipeRepository
+    repository: RecipeRepository,
+    pantryRepository: PantryRepository,
+    navController: NavController
 ) {
 
     val factory = RecipeDetailsViewModelFactory(repository)
@@ -24,22 +37,50 @@ fun RecipeDetailsScreen(
     val viewModel: RecipeDetailsViewModel = viewModel(
         factory = factory
     )
+    val recipe by viewModel.recipe.collectAsState()
 
+    val pantryItems by pantryRepository
+        .getAllItems()
+        .collectAsState(initial = emptyList())
+
+    val missingIngredients =
+        recipe?.ingredients?.filter { ingredient ->
+            pantryItems.none { item ->
+                item.name.equals(
+                    ingredient.name,
+                    ignoreCase = true
+                )
+                        &&
+                        item.has
+            }
+        } ?: emptyList()
+
+    val canCook =
+        missingIngredients.isEmpty()
 
     LaunchedEffect(recipeId) {
         viewModel.loadRecipe(recipeId)
     }
 
 
-    val recipe by viewModel.recipe.collectAsState()
-
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-
+        IconButton(
+            onClick = {
+                navController.popBackStack()
+            }
+        ) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Back"
+            )
+        }
         if (recipe == null) {
 
             Text(
@@ -76,10 +117,40 @@ fun RecipeDetailsScreen(
             )
 
 
-            Text(
-                text = "${data.recipe.protein}P • ${data.recipe.fat}F • ${data.recipe.carbs}C • ${data.recipe.calories} kcal"
+            Row {
+
+                NutritionCard(
+                    label = "Protein",
+                    value = "${data.recipe.protein} g"
+                )
+
+                NutritionCard(
+                    label = "Fat",
+                    value = "${data.recipe.fat} g"
+                )
+
+                NutritionCard(
+                    label = "Carbs",
+                    value = "${data.recipe.carbs} g"
+                )
+
+                NutritionCard(
+                    label = "Calories",
+                    value = "${data.recipe.calories}"
+                )
+            }
+
+            Spacer(
+                modifier = Modifier.height(16.dp)
             )
 
+
+            CookStatusCard(
+                canCook = canCook,
+                missingIngredients = missingIngredients.map {
+                    it.name
+                }
+            )
 
             Spacer(
                 modifier = Modifier.height(16.dp)
@@ -91,19 +162,34 @@ fun RecipeDetailsScreen(
                 style = MaterialTheme.typography.titleMedium
             )
 
-
             Spacer(
                 modifier = Modifier.height(8.dp)
             )
 
-
             data.ingredients.forEach { ingredient ->
+                val available =
+                    pantryItems.any { item ->
+                        item.name.equals(
+                            ingredient.name,
+                            ignoreCase = true
+                        )
+                                &&
+                                item.has
+                    }
 
-                Text(
-                    text = "• ${ingredient.name} ${ingredient.quantity ?: ""} ${ingredient.unit ?: ""}"
+                IngredientStatusRow(
+                    name = ingredient.name,
+                    quantity = "${ingredient.quantity ?: ""} ${ingredient.unit ?: ""}",
+                    available = available
                 )
-
             }
+            Spacer(
+                modifier = Modifier.height(24.dp)
+            )
+
+            RecipeInstructions(
+                instructions = data.recipe.instructions
+            )
         }
     }
 }

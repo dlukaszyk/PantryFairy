@@ -18,7 +18,9 @@ object DatabaseProvider {
                 AppDatabase::class.java,
                 "pantryfairy_database"
             )
-                .fallbackToDestructiveMigration() //todo poprawić żeby nie znikały dane jak będą już prawdziwe
+                .addMigrations(
+                    MIGRATION_2_3
+                )
                 .build()
 
             INSTANCE = instance

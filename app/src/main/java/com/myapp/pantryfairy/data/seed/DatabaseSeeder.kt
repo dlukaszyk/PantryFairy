@@ -48,7 +48,12 @@ class DatabaseSeeder(
                 calories = 450,
                 protein = 15,
                 fat = 12,
-                carbs = 60
+                carbs = 60,
+                instructions = """
+                1. Mix eggs and milk.
+                2. Add flour and combine.
+                3. Fry pancakes on a pan.
+                """.trimIndent()
             )
             val scrambledEggs = RecipeEntity(
                 name = "Scrambled Eggs",
@@ -57,7 +62,10 @@ class DatabaseSeeder(
                 calories = 450,
                 protein = 23,
                 fat = 12,
-                carbs = 12
+                carbs = 12,
+                instructions = """
+                1. Crack eggs and scramble.
+                """.trimIndent()
             )
 
             recipeRepository.insertRecipeWithIngredients(
